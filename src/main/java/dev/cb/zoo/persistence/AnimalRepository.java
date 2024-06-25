@@ -3,6 +3,8 @@ package dev.cb.zoo.persistence;
 import dev.cb.zoo.entity.Animal;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.List;
 import java.util.Optional;
 
 public class AnimalRepository {
@@ -29,5 +31,17 @@ public class AnimalRepository {
         entityManager.getTransaction().commit();
 
         return optionalAnimal;
+    }
+
+    public List<Animal> findByName(String name) {
+        entityManager.getTransaction().begin();
+
+        Query query = entityManager.createQuery("SELECT a from Animal a where name = :name", Animal.class);
+        query.setParameter("name", name);
+        List<Animal> animals = query.getResultList();
+
+        entityManager.getTransaction().commit();
+
+        return animals;
     }
 }
