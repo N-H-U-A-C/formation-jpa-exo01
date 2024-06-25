@@ -1,6 +1,7 @@
 package dev.cb.zoo.persistence;
 
 import dev.cb.zoo.entity.Animal;
+import dev.cb.zoo.entity.Diet;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -36,8 +37,20 @@ public class AnimalRepository {
     public List<Animal> findByName(String name) {
         entityManager.getTransaction().begin();
 
-        Query query = entityManager.createQuery("SELECT a from Animal a where name = :name", Animal.class);
+        Query query = entityManager.createQuery("SELECT a FROM Animal a WHERE a.name = :name", Animal.class);
         query.setParameter("name", name);
+        List<Animal> animals = query.getResultList();
+
+        entityManager.getTransaction().commit();
+
+        return animals;
+    }
+
+    public List<Animal> findByDiet(Diet diet) {
+        entityManager.getTransaction().begin();
+
+        Query query = entityManager.createQuery("SELECT a FROM Animal a WHERE a.diet = :diet", Animal.class);
+        query.setParameter("diet", diet);
         List<Animal> animals = query.getResultList();
 
         entityManager.getTransaction().commit();

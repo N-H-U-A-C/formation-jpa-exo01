@@ -23,10 +23,13 @@ public class Main {
         Animal animal2 = new Animal("Lion", 6, Diet.CARNIVORE, LocalDate.parse("2021-10-05"));
 //        animalRepository.addAnimal(animal2);
 
-        Optional<Animal> optionalAnimal = animalRepository.find(1);
-        optionalAnimal.ifPresent(System.out::println);
+//        Optional<Animal> optionalAnimal = animalRepository.find(1);
+//        optionalAnimal.ifPresent(System.out::println);
 
-        List<Animal> animals = animalRepository.findByName("Lion");
+//        List<Animal> animals = animalRepository.findByName("Lion");
+//        System.out.println(animals);
+
+        List<Animal> animals = animalRepository.findByDiet(Diet.CARNIVORE);
         System.out.println(animals);
     }
 }
