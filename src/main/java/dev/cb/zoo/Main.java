@@ -3,6 +3,7 @@ package dev.cb.zoo;
 import dev.cb.zoo.entity.Animal;
 import dev.cb.zoo.entity.Diet;
 import dev.cb.zoo.persistence.AnimalRepository;
+import dev.cb.zoo.persistence.PostgresEntityManager;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,9 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("jpa");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        AnimalRepository animalRepository = new AnimalRepository(entityManager);
+        AnimalRepository animalRepository = new AnimalRepository(PostgresEntityManager.getEntityManager());
 
         Animal animal1 = new Animal("Girafe", 5, Diet.HERBIVORE, LocalDate.parse("2020-05-05"));
         Animal animal2 = new Animal("Lion", 6, Diet.CARNIVORE, LocalDate.parse("2021-10-05"));
