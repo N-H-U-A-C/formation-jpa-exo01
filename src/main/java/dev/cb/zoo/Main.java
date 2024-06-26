@@ -2,6 +2,7 @@ package dev.cb.zoo;
 
 import dev.cb.zoo.entity.Animal;
 import dev.cb.zoo.entity.Diet;
+import dev.cb.zoo.ihm.Ihm;
 import dev.cb.zoo.persistence.AnimalRepository;
 import dev.cb.zoo.persistence.PostgresEntityManager;
 
@@ -17,18 +18,8 @@ public class Main {
     public static void main(String[] args) {
 
         AnimalRepository animalRepository = new AnimalRepository(PostgresEntityManager.getEntityManager());
+        Ihm ihm = new Ihm(animalRepository);
 
-        Animal animal1 = new Animal("Girafe", 5, Diet.HERBIVORE, LocalDate.parse("2020-05-05"));
-        Animal animal2 = new Animal("Lion", 6, Diet.CARNIVORE, LocalDate.parse("2021-10-05"));
-//        animalRepository.addAnimal(animal2);
-
-//        Optional<Animal> optionalAnimal = animalRepository.find(1);
-//        optionalAnimal.ifPresent(System.out::println);
-
-//        List<Animal> animals = animalRepository.findByName("Lion");
-//        System.out.println(animals);
-
-        List<Animal> animals = animalRepository.findByDiet(Diet.CARNIVORE);
-        System.out.println(animals);
+        ihm.run();
     }
 }
