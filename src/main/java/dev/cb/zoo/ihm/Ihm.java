@@ -5,8 +5,6 @@ import dev.cb.zoo.entity.Diet;
 import dev.cb.zoo.persistence.AnimalRepository;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 

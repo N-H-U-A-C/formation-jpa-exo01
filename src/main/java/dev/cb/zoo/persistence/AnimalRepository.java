@@ -4,7 +4,6 @@ import dev.cb.zoo.entity.Animal;
 import dev.cb.zoo.entity.Diet;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
