@@ -16,7 +16,7 @@ public class AnimalRepository {
         this.entityManager = entityManager;
     }
 
-    public void addAnimal(Animal animal) {
+    public void add(Animal animal) {
         entityManager.getTransaction().begin();
 
         entityManager.persist(animal);
@@ -24,7 +24,7 @@ public class AnimalRepository {
         entityManager.getTransaction().commit();
     }
 
-    public Optional<Animal> find(int id) {
+    public Optional<Animal> findById(int id) {
         entityManager.getTransaction().begin();
 
         Optional<Animal> optionalAnimal = Optional.ofNullable(entityManager.find(Animal.class, id));
@@ -34,7 +34,7 @@ public class AnimalRepository {
         return optionalAnimal;
     }
 
-    public List<Animal> findByName(String name) {
+    public List<Animal> findAllByName(String name) {
         entityManager.getTransaction().begin();
 
         TypedQuery<Animal> query = entityManager.createQuery("SELECT a FROM Animal a WHERE a.name = :name", Animal.class);
@@ -46,7 +46,7 @@ public class AnimalRepository {
         return animals;
     }
 
-    public List<Animal> findByDiet(Diet diet) {
+    public List<Animal> findAllByDiet(Diet diet) {
         entityManager.getTransaction().begin();
 
         TypedQuery<Animal> query = entityManager.createQuery("SELECT a FROM Animal a WHERE a.diet = :diet", Animal.class);

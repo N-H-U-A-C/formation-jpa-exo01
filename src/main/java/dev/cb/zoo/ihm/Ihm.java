@@ -82,14 +82,14 @@ public class Ihm {
         LocalDate arrivalDate = LocalDate.parse(dateString);
 
         Animal animal = new Animal(name, age, diet, arrivalDate);
-        animalRepository.addAnimal(animal);
+        animalRepository.add(animal);
     }
 
     private void getAnimal() {
         System.out.print(ANIMAL_TEXT + "id:\s");
         int id = Integer.parseInt(scanner.nextLine());
 
-        Optional<Animal> optionalAnimal = animalRepository.find(id);
+        Optional<Animal> optionalAnimal = animalRepository.findById(id);
         optionalAnimal.ifPresentOrElse(System.out::println, () -> System.out.println("Animal not found"));
     }
 
@@ -97,14 +97,14 @@ public class Ihm {
         System.out.print(ANIMAL_TEXT + "name:\s");
         String name = scanner.nextLine();
 
-        System.out.println(this.animalRepository.findByName(name));
+        System.out.println(this.animalRepository.findAllByName(name));
     }
 
     private void getAllAnimalsByDiet() {
         System.out.print(ANIMAL_TEXT + "diet:\s");
         Diet diet = Diet.valueOf(scanner.nextLine().toUpperCase());
 
-        System.out.println(this.animalRepository.findByDiet(diet));
+        System.out.println(this.animalRepository.findAllByDiet(diet));
     }
 
     private void sayWelcome() {
